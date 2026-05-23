@@ -1,0 +1,16 @@
+{
+    "elbow_angle_min": 169.84602236723606,
+    "elbow_angle_max": 179.40958500945456,
+    "arm_ratio_min": 0.9960999105496745,
+    "arm_ratio_max": 0.9999953311603579,
+    "shoulder_angle_min": 92.47998228099992,
+    "shoulder_angle_max": 103.76075930872763,
+    "knee_angle_min": 162.15997605839962,
+    "knee_angle_max": 170.17612692144382,
+    "hip_angle_min": 152.03967778887431,
+    "hip_angle_max": 165.942284044604,
+    "ankle_angle_min": 143.2273663229653,
+    "ankle_angle_max": 174.6503357160124,
+    "neck_tilt_min": 84.42545350422596,
+    "neck_tilt_max": 102.82451324549922
+}

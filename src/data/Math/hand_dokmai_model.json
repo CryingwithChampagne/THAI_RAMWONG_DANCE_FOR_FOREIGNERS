@@ -1,0 +1,14 @@
+{
+    "curve": {
+        "index_middle_min": 0.1435737996525045,
+        "index_middle_max": 0.27128591506747435,
+        "middle_ring_min": 0.14688314611809994,
+        "middle_ring_max": 0.22755003141555905,
+        "ring_pinky_min": 0.28182630394279506,
+        "ring_pinky_max": 0.5025690721806293,
+        "thumb_angle_min": 67.88843920839606,
+        "thumb_angle_max": 108.29319051093324,
+        "wrist_tilt_min": 22.239412774499996,
+        "wrist_tilt_max": 43.52055746175036
+    }
+}

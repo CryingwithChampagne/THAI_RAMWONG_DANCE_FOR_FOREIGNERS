@@ -1,0 +1,26 @@
+{
+    "pinch": {
+        "thumb_index_min": 0.035027212058299256,
+        "thumb_index_max": 0.4159849361749609,
+        "index_middle_min": 0.15248055089419754,
+        "index_middle_max": 0.35281312173666207,
+        "middle_ring_min": 0.059558075886229744,
+        "middle_ring_max": 0.16725262410863542,
+        "ring_pinky_min": 0.12200884995246927,
+        "ring_pinky_max": 0.19192063432151107,
+        "thumb_angle_min": 69.54360251170523,
+        "thumb_angle_max": 151.680538176726
+    },
+    "curve": {
+        "thumb_index_min": 0.30053313573231677,
+        "thumb_index_max": 0.4741636020835405,
+        "index_middle_min": 0.014136365440566326,
+        "index_middle_max": 0.031192702371839905,
+        "middle_ring_min": 0.022637443385937095,
+        "middle_ring_max": 0.07103257388847603,
+        "ring_pinky_min": 0.045309598456154274,
+        "ring_pinky_max": 0.24317264885890208,
+        "thumb_angle_min": 74.19142596010245,
+        "thumb_angle_max": 114.92120651811341
+    }
+}
