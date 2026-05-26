@@ -500,12 +500,12 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
   const selectedPoseIcon = selectedPose?.icon || '🌸';
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-[#05070A] text-white flex flex-col font-sans relative selection:bg-[#D4AF37] selection:text-black">
+    <div className="w-full min-h-screen lg:h-screen overflow-x-hidden lg:overflow-hidden bg-[#05070A] text-white flex flex-col font-sans relative selection:bg-[#D4AF37] selection:text-black">
       
       {/* Accuracy Pop-up */}
       {showAccuracyPopup && (
-        <div className="absolute inset-0 z-50 bg-[#0B0F19]/90 backdrop-blur-md flex flex-col items-center justify-center">
-          <div className="bg-[#121826] border border-green-500/50 p-12 rounded-2xl shadow-2xl flex flex-col items-center max-w-lg w-full mx-4">
+        <div className="fixed inset-0 z-50 bg-[#0B0F19]/90 backdrop-blur-md flex flex-col items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#121826] border border-green-500/50 p-6 sm:p-10 lg:p-12 rounded-2xl shadow-2xl flex flex-col items-center max-w-lg w-full">
             <h2 className="text-4xl font-serif text-green-400 mb-6 flex items-center gap-2">✅ Evaluation</h2>
             
             {tutorialPhase === 3 ? (
@@ -538,15 +538,15 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
                 </div>
               </div>
             ) : (
-              <div className="w-48 h-48 rounded-full border-4 border-green-400 flex flex-col items-center justify-center bg-black/40 mb-10">
+              <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-full border-4 border-green-400 flex flex-col items-center justify-center bg-black/40 mb-10">
                 <p className="text-sm text-gray-400 uppercase">Score</p>
-                <span className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-400 to-green-300">{accuracyScore}%</span>
+                <span className="text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-400 to-green-300">{accuracyScore}%</span>
               </div>
             )}
 
             <div className="flex w-full gap-4 flex-col">
               {tutorialPhase === 3 ? (
-                <div className="flex gap-4 w-full">
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
                   <Button onClick={() => {
                     setFinalAverageScore(maxLoopScore);
                     setShowAccuracyPopup(false);
@@ -566,7 +566,7 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
                   }} variant="outline" className="flex-1 py-4 rounded-xl">🔄 Retry loops</Button>
                 </div>
               ) : (
-                <div className="flex gap-4 w-full">
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
                   <Button onClick={() => {
                     setShowAccuracyPopup(false);
                     phaseRef.current = nextPhaseNumber;
@@ -596,8 +596,8 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
       )}
 
       {calibState !== 'playing' && (
-        <div className={`absolute inset-0 z-50 flex flex-col items-center justify-center transition-colors duration-500 ${cameraPreviewReady ? 'bg-[#05070A]/55 backdrop-blur-[2px]' : 'bg-[#0B0F19]/95 backdrop-blur-md'}`}>
-          <div className="bg-[#121826]/95 border border-[#D4AF37]/30 p-10 rounded-xl shadow-2xl flex flex-col items-center max-w-lg text-center">
+        <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center p-4 transition-colors duration-500 ${cameraPreviewReady ? 'bg-[#05070A]/55 backdrop-blur-[2px]' : 'bg-[#0B0F19]/95 backdrop-blur-md'}`}>
+          <div className="bg-[#121826]/95 border border-[#D4AF37]/30 p-6 sm:p-10 rounded-xl shadow-2xl flex flex-col items-center max-w-lg w-full text-center">
             {calibState === 'detecting' && (
               <>
                 <div className="w-16 h-16 border-4 border-[#D4AF37] border-t-transparent rounded-full animate-spin mb-6" />
@@ -626,21 +626,21 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
         </div>
       )}
 
-      <div className="h-[8vh] min-h-[65px] flex justify-between items-center px-12 md:px-16 border-b border-white/5 bg-[#0B0F19] z-40 relative shadow-md">
-        <div className="flex items-center gap-4">
+      <div className="min-h-[65px] flex justify-between items-center gap-4 px-4 sm:px-8 md:px-16 py-3 border-b border-white/5 bg-[#0B0F19] z-40 relative shadow-md">
+        <div className="flex min-w-0 items-center gap-3 sm:gap-4">
           <div className="text-xl p-2.5 bg-yellow-900/40 text-[#D4AF37] rounded-lg border border-[#D4AF37]/30">{selectedPoseIcon}</div>
-          <h2 className="text-xl font-serif text-[#D4AF37] uppercase tracking-widest flex items-center gap-4 font-bold">
+          <h2 className="min-w-0 text-base sm:text-xl font-serif text-[#D4AF37] uppercase tracking-wider sm:tracking-widest flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 font-bold">
             {selectedPose?.name}
             {calibState === 'playing' && <span className="px-3 py-1 bg-red-500/20 text-red-400 text-xs font-bold rounded-full animate-pulse border border-red-500/30 flex items-center gap-2"><div className="w-2 h-2 bg-red-500 rounded-full" /> Live Phase {tutorialPhase}</span>}
           </h2>
         </div>
-        <Button variant="outline" onClick={() => setCurrentPage('select-pose')} className="text-xs px-6 py-2.5 rounded-xl">Exit</Button>
+        <Button variant="outline" onClick={() => setCurrentPage('select-pose')} className="text-xs px-4 sm:px-6 py-2.5 rounded-xl shrink-0">Exit</Button>
       </div>
       
-      <div className="flex-1 h-[92vh] flex flex-row p-4 gap-4 relative">
-        <div className="flex-[7] flex flex-col gap-4">
-            <div className="flex-1 flex flex-row gap-4 relative">
-                <div className="flex-1 bg-[#0B0F19] rounded-xl overflow-hidden border border-white/5 relative flex flex-col">
+      <div className="flex-1 lg:h-[calc(100vh-65px)] flex flex-col xl:flex-row p-3 sm:p-4 gap-4 relative overflow-y-auto lg:overflow-hidden">
+        <div className="xl:flex-[7] flex flex-col gap-4 min-h-0">
+            <div className="flex-1 flex flex-col md:flex-row gap-4 relative min-h-0">
+                <div className="flex-1 min-h-[260px] md:min-h-[360px] xl:min-h-0 bg-[#0B0F19] rounded-xl overflow-hidden border border-white/5 relative flex flex-col">
                   <div className="bg-[#121826] py-2 text-center border-b border-white/5"><h3 className="text-xs text-gray-400 uppercase tracking-widest font-bold">Instructor (Tutorial)</h3></div>
                   <div className="flex-1 relative bg-black flex items-center justify-center">
                     {tutorialPhase < 3 ? (
@@ -652,10 +652,10 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
                     )}
                   </div>
                 </div>
-                <div className="flex-1 bg-[#0B0F19] rounded-xl overflow-hidden border border-[#D4AF37]/30 relative flex flex-col">
-                  <div className="bg-[#121826] py-2 px-4 border-b border-[#D4AF37]/30 flex justify-between items-center">
+                <div className="flex-1 min-h-[260px] md:min-h-[360px] xl:min-h-0 bg-[#0B0F19] rounded-xl overflow-hidden border border-[#D4AF37]/30 relative flex flex-col">
+                  <div className="bg-[#121826] py-2 px-3 sm:px-4 border-b border-[#D4AF37]/30 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
                     <h3 className="text-xs text-gray-400 uppercase tracking-widest font-bold">Your Canvas</h3>
-                    <select className="bg-[#0B0F19] text-[#D4AF37] border border-[#D4AF37]/50 rounded-lg px-3 py-1.5 text-xs outline-none cursor-pointer font-bold" value={selectedDeviceId} onChange={(e) => setSelectedDeviceId(e.target.value)}>
+                    <select className="w-full sm:w-auto bg-[#0B0F19] text-[#D4AF37] border border-[#D4AF37]/50 rounded-lg px-3 py-1.5 text-xs outline-none cursor-pointer font-bold" value={selectedDeviceId} onChange={(e) => setSelectedDeviceId(e.target.value)}>
                       {devices.length === 0 && <option>Loading Hardware...</option>}
                       {devices.map(d => <option key={d.deviceId} value={d.deviceId}>{d.label || 'Camera'}</option>)}
                     </select>
@@ -667,10 +667,10 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
                 </div>
             </div>
             
-            <div className="bg-[#0B0F19] rounded-xl border border-white/5 p-4 flex flex-row items-center justify-between">
-                <Button variant="outline" onClick={() => setCurrentPage('select-pose')} className="text-sm px-10 py-4">Abort Session</Button>
-                <div className="text-xs text-gray-500 font-medium">Tutorial Mode Active: Follow the phases to complete the lesson</div>
-                <div className="flex gap-4">
+            <div className="bg-[#0B0F19] rounded-xl border border-white/5 p-4 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+                <Button variant="outline" onClick={() => setCurrentPage('select-pose')} className="text-sm px-6 lg:px-10 py-3 lg:py-4">Abort Session</Button>
+                <div className="text-xs text-gray-500 font-medium text-center lg:text-left">Tutorial Mode Active: Follow the phases to complete the lesson</div>
+                <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
                   {tutorialPhase > 1 && (
                     <Button variant="outline" onClick={() => {
                       phaseRef.current = tutorialPhase - 1;
@@ -684,24 +684,24 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
                         phase3AwaitingSwitchRef.current = false;
                         setTutorialMsg('✓ PHASE 2: Train Body 💪 Elbows and shoulders positioned correctly (Score >= 80%)');
                       }
-                    }} className="text-sm px-10 py-4">⬅️ Back Phase</Button>
+                    }} className="text-sm px-6 lg:px-10 py-3 lg:py-4">⬅️ Back Phase</Button>
                   )}
                   <Button variant="primary" onClick={() => {
                     setFinalAverageScore(maxLoopScore > 0 ? maxLoopScore : currentScore);
                     setCurrentPage('feedback');
-                  }} className="text-sm px-10 py-4">⏭️ Skip Lesson</Button>
+                  }} className="text-sm px-6 lg:px-10 py-3 lg:py-4">⏭️ Skip Lesson</Button>
                 </div>
             </div>
         </div>
 
         {/* ขวา: สถิติและจุด Feedback */}
-        <div className="flex-[3] flex flex-col gap-4">
+        <div className="xl:flex-[3] flex flex-col gap-4 min-h-0">
             <div className={`p-6 md:p-8 rounded-xl border text-center transition-all min-h-[120px] flex flex-col justify-center border-t-4 ${
               tutorialPhase === 1 ? 'bg-red-900/30 border-red-500 text-red-300' : 
               tutorialPhase === 2 ? 'bg-amber-900/30 border-amber-500 text-amber-300' : 
               'bg-green-900/30 border-green-500 text-green-300'
             }`}>
-                <h3 className="font-bold text-xl md:text-2xl leading-relaxed tracking-wide space-y-2">{tutorialMsg}</h3>
+                <h3 className="font-bold text-lg sm:text-xl md:text-2xl leading-relaxed tracking-wide space-y-2 break-words">{tutorialMsg}</h3>
                 {isHoldingThreshold && holdDisplay > 0 && (
                   <div className="w-full bg-black/60 rounded-full h-3 mt-4 overflow-hidden border border-white/5">
                     <div className={`h-full transition-all duration-100 ${tutorialPhase === 1 ? 'bg-red-400' : tutorialPhase === 2 ? 'bg-amber-400' : 'bg-green-400'}`} style={{ width: `${(holdDisplay / 3) * 100}%` }}></div>
@@ -709,11 +709,11 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
                 )}
             </div>
 
-            <div className={`flex-[1.2] flex flex-col items-center justify-center rounded-xl border transition-colors duration-500 relative overflow-hidden ${currentScore >= 80 ? 'bg-green-900/20 border-green-500/40 shadow-[0_0_20px_rgba(34,197,94,0.1)]' : 'bg-[#0B0F19] border-[#D4AF37]/40'}`}>
+            <div className={`min-h-[160px] xl:flex-[1.2] flex flex-col items-center justify-center rounded-xl border transition-colors duration-500 relative overflow-hidden ${currentScore >= 80 ? 'bg-green-900/20 border-green-500/40 shadow-[0_0_20px_rgba(34,197,94,0.1)]' : 'bg-[#0B0F19] border-[#D4AF37]/40'}`}>
                  {isHoldingThreshold ? (
                    <>
                      <p className="text-xs text-amber-400 mb-1 uppercase tracking-widest font-bold animate-pulse">⏱️ HOLD!</p>
-                     <h4 className="text-7xl font-serif text-amber-400 font-bold">{Math.ceil((3.0 - holdDisplay))}</h4>
+                     <h4 className="text-6xl sm:text-7xl font-serif text-amber-400 font-bold">{Math.ceil((3.0 - holdDisplay))}</h4>
                    </>
                  ) : (
                    <>
@@ -722,22 +722,22 @@ const LearningStudio = ({ selectedPose, setCurrentPage, setFinalAverageScore }) 
                        {tutorialPhase === 2 && '💪 Body Score'}
                        {tutorialPhase === 3 && '⭐ Total Score'}
                      </p>
-                     <h4 className={`text-6xl font-serif font-bold ${currentScore >= 80 ? 'text-green-400' : 'text-[#D4AF37]'}`}>{currentScore}%</h4>
+                     <h4 className={`text-5xl sm:text-6xl font-serif font-bold ${currentScore >= 80 ? 'text-green-400' : 'text-[#D4AF37]'}`}>{currentScore}%</h4>
                    </>
                  )}
             </div>
 
-            <div className="flex-[3.8] bg-[#0B0F19] border border-white/5 rounded-xl flex flex-col overflow-hidden shadow-lg">
+            <div className="min-h-[320px] xl:flex-[3.8] bg-[#0B0F19] border border-white/5 rounded-xl flex flex-col overflow-hidden shadow-lg">
                  <div className="bg-[#121826] py-3.5 px-5 border-b border-white/5">
                    <h3 className="text-base text-[#D4AF37] uppercase tracking-widest font-bold">AI Feedback Log</h3>
                    <p className="text-xs text-gray-500 mt-1">📍 From: {selectedPose?.name || 'No Pose Selected'}</p>
                  </div>
                  
-                 <div className="flex-1 p-5 overflow-y-auto space-y-6 text-gray-300 bg-black/30">
+                 <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-4 sm:space-y-6 text-gray-300 bg-black/30">
                    {feedbackMessages.length > 0 ? (
                      feedbackMessages.map((msg, idx) => (
                        /* ปรับลดขนาดข้อความ (text size) ลงมา 6px ตามบรีฟ เพื่อให้ไม่อึดอัดสายตาและพอดีกรอบ */
-                       <div key={idx} className="p-6 rounded-xl bg-yellow-900/20 border-2 border-yellow-600/60 text-yellow-400 font-bold text-[22px] md:text-[24px] leading-loose shadow-md transition-all animate-fadeIn">
+                       <div key={idx} className="p-4 sm:p-6 rounded-xl bg-yellow-900/20 border-2 border-yellow-600/60 text-yellow-400 font-bold text-lg sm:text-[22px] md:text-[24px] leading-relaxed sm:leading-loose shadow-md transition-all animate-fadeIn">
                          💡 {msg}
                        </div>
                      ))
